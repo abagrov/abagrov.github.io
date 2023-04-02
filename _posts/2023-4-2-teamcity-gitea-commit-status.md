@@ -7,18 +7,17 @@ TeamCity + Gitea + C# scripts = ❤️ Commit status
 
 TeamCity and Gitea are well-known as useful tools for building self-hosted CI/CD, but one of the main constraints for many engineers is that one cannot publish commit status from TeamCity to Gitea out of the box. However, the clue is that TeamCity has C# scripts runner and a meta-runner feature, whereby it is possible to create reusable build steps for commit status publishing with Gitea API. 
 
-#### Prerequisites
+### Prerequisites
 
 1. Gitea server
 2. Gitea repo where commit status will be published
 3. TeamCity server with C# script runner
 
-#### Scheme of interaction
+### Scheme of interaction
 1. The first build step will clone the Gitea repo with C# scripts and publish a commit status that the build was started.
 2. The second step will run when the build is finished or in case of an error, so it will post the following build result: “success” or “error” with error details.
 
 ### C# scripts to post commit status 
-
 Gitea has a simple [REST API](https://try.gitea.io/api/swagger#/repository/repoCreateStatus), which can be used via common HttpClient. API of TeamCity a little bit more complicated, so [TeamCitySharp](https://github.com/mavezeau/TeamCitySharp) NuGet package can be utilized.
 
 <details>
@@ -60,10 +59,13 @@ After that, you need to create configuration parameter to store this token. In T
 
 After all, you can add publish commit status build steps like any other built-in steps.
 
+
 ![New build step available](/images/teamcity-gitea-commit-status/addPublishCommitStatus.png)
 
+Setup publish commit start build step.
 ![Publish Gitea commit status start build step](/images/teamcity-gitea-commit-status/publishGiteaCommitStatusStart.png)
 
+Then setup publish commit end build step.
 ![Publish Gitea commit status end build step](/images/teamcity-gitea-commit-status/publishGiteaCommitStatusEnd.png)
 
 It is important to note that the second step, called `Publish Gitea commit status end` must be configured with the following condition: `Execute step: Always, even if build stop command was issued`.
