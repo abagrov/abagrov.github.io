@@ -8,6 +8,6 @@ Hi, I'm Andrey Bagrov, .NET software engineer. I specialize in using ASP.NET Cor
 
 ### Contact me
 
-[andrey.bagrov@yandex.ru](mailto:andrey.bagrov.work@gmail.com)
+[andrey.bagrov.work@gmail.com](mailto:andrey.bagrov.work@gmail.com)
 
 [Telegram](https://t.me/abagrov)
