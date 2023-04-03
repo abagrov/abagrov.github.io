@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Posting Gitea commit status in TeamCity build
+title: Posting Gitea commit status in a TeamCity build
 ---
 
 TeamCity + Gitea + C# scripts = ❤️ Commit status
